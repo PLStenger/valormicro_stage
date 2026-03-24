@@ -211,6 +211,7 @@ qiime demux summarize \
 TABLE_MAIN_QZA="${QIIME_OUT_DIR}/table_main.qza"
 REP_SEQS_MAIN_QZA="${QIIME_OUT_DIR}/rep_seqs_main.qza"
 STATS_MAIN_QZA="${QIIME_OUT_DIR}/dada2_stats_main.qza"
+BASETRANS_MAIN_QZA="${QIIME_OUT_DIR}/dada2_basetrans_main.qza"   
 
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs "${DEMUX_MAIN_QZA}" \
@@ -221,12 +222,14 @@ qiime dada2 denoise-paired \
   --p-n-threads 0 \
   --o-table "${TABLE_MAIN_QZA}" \
   --o-representative-sequences "${REP_SEQS_MAIN_QZA}" \
-  --o-denoising-stats "${STATS_MAIN_QZA}"
+  --o-denoising-stats "${STATS_MAIN_QZA}" \
+  --o-base-transition-stats "${BASETRANS_MAIN_QZA}"
 
 # Fichiers de sortie pour les témoins négatifs
 TABLE_TNEG_QZA="${QIIME_OUT_DIR}/table_Tneg.qza"
 REP_SEQS_TNEG_QZA="${QIIME_OUT_DIR}/rep_seqs_Tneg.qza"
 STATS_TNEG_QZA="${QIIME_OUT_DIR}/dada2_stats_Tneg.qza"
+BASETRANS_TNEG_QZA="${QIIME_OUT_DIR}/dada2_basetrans_Tneg.qza" 
 
 qiime dada2 denoise-paired \
   --i-demultiplexed-seqs "${DEMUX_TNEG_QZA}" \
@@ -237,7 +240,8 @@ qiime dada2 denoise-paired \
   --p-n-threads 0 \
   --o-table "${TABLE_TNEG_QZA}" \
   --o-representative-sequences "${REP_SEQS_TNEG_QZA}" \
-  --o-denoising-stats "${STATS_TNEG_QZA}"
+  --o-denoising-stats "${STATS_TNEG_QZA}" \
+  --o-base-transition-stats "${BASETRANS_TNEG_QZA}"
 
 ############################
 # 7. Visualisations des outputs DADA2
