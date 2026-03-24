@@ -25,6 +25,7 @@
 ############################
 
 # On active l'environnement conda qui contient QIIME2.
+source /home/vanton/miniconda3/etc/profile.d/conda.sh
 conda activate qiime2-amplicon-2026.1
 
 ############################
@@ -160,14 +161,14 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path "${MANIFEST_MAIN}" \
   --output-path "${DEMUX_MAIN_QZA}" \
-  --input-format PairedEndFastqManifestPhred33V2
+  --input-format PairedEndFastqManifestPhred33
 
 # Import témoins négatifs
 qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path "${MANIFEST_TNEG}" \
   --output-path "${DEMUX_TNEG_QZA}" \
-  --input-format PairedEndFastqManifestPhred33V2
+  --input-format PairedEndFastqManifestPhred33
 
 ############################
 # 5. Résumé du demultiplexage (qiime demux summarize)
