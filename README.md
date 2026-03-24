@@ -14,6 +14,7 @@ First, open your terminal. Then, run these two command lines :
 
 ### Running the script with :
 
-    time nohup bash pipeline_complete.sh &> pipeline_complete.out
+    #time nohup bash pipeline_complete.sh &> pipeline_complete.out
     time nohup bash 00_quality_and_cleanning_steps.sh &> 00_quality_and_cleanning_steps.out
+    time nohup bash 01_qiime2_import_and_dada2.sh &> 01_qiime2_import_and_dada2.out
    
