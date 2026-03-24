@@ -249,6 +249,31 @@ qiime dada2 denoise-paired \
 # On génère les .qzv associés à la table, aux séquences représentatives
 # et aux stats de denoising pour pouvoir les explorer dans QIIME2 View.
 
+# Fichiers pour le résumé de la table principale
+FEATURE_FREQ_MAIN_QZA="${QIIME_OUT_DIR}/feature_freq_main.qza"
+SAMPLE_FREQ_MAIN_QZA="${QIIME_OUT_DIR}/sample_freq_main.qza"
+TABLE_MAIN_QZV="${QIIME_OUT_DIR}/table_main.qzv"
+
+qiime feature-table summarize \
+  --i-table "${TABLE_MAIN_QZA}" \
+  --m-metadata-file "${METADATA_MAIN}" \
+  --o-feature-frequencies "${FEATURE_FREQ_MAIN_QZA}" \
+  --o-sample-frequencies "${SAMPLE_FREQ_MAIN_QZA}" \
+  --o-summary "${TABLE_MAIN_QZV}"
+
+# Fichiers pour le résumé de la table Tneg
+FEATURE_FREQ_TNEG_QZA="${QIIME_OUT_DIR}/feature_freq_Tneg.qza"
+SAMPLE_FREQ_TNEG_QZA="${QIIME_OUT_DIR}/sample_freq_Tneg.qza"
+TABLE_TNEG_QZV="${QIIME_OUT_DIR}/table_Tneg.qzv"
+
+qiime feature-table summarize \
+  --i-table "${TABLE_TNEG_QZA}" \
+  --m-metadata-file "${METADATA_MAIN}" \
+  --o-feature-frequencies "${FEATURE_FREQ_TNEG_QZA}" \
+  --o-sample-frequencies "${SAMPLE_FREQ_TNEG_QZA}" \
+  --o-summary "${TABLE_TNEG_QZV}"
+
+
 TABLE_MAIN_QZV="${QIIME_OUT_DIR}/table_main.qzv"
 REP_SEQS_MAIN_QZV="${QIIME_OUT_DIR}/rep_seqs_main.qzv"
 STATS_MAIN_QZV="${QIIME_OUT_DIR}/dada2_stats_main.qzv"
@@ -265,9 +290,6 @@ qiime feature-table tabulate-seqs \
 qiime metadata tabulate \
   --m-input-file "${STATS_MAIN_QZA}" \
   --o-visualization "${STATS_MAIN_QZV}"
-
-# On pourrait faire la même chose pour les témoins négatifs si nécessaire
-# (table_Tneg, rep_seqs_Tneg, dada2_stats_Tneg).
 
 echo "Pipeline QIIME2 terminé."
 echo "Résultats dans : ${QIIME_OUT_DIR}"
